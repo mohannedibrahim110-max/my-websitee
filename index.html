@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>مهند إبراهيم | صفحتي الخاصة</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      direction: rtl;
+      background: linear-gradient(-45deg, #232526, #414345, #2c3e50, #000000);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      background-color: rgba(44, 44, 44, 0.85);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+    }
+
+    input {
+      padding: 10px;
+      width: 90%;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #login, #privatePage, #hobbiesPage {
+      display: none;
+    }
+
+    .flowers {
+      font-size: 28px;
+      margin: 10px 0 20px 0;
+      letter-spacing: 10px;
+      animation: float 2s infinite ease-in-out, colorChange 3s infinite alternate;
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes colorChange {
+      0%   { color: #ff0000; }
+      50%  { color: #ff69b4; }
+      100% { color: #ff0000; }
+    }
+
+    /* هوايات */
+    .football {
+      color: #4CAF50;
+      display: inline-block;
+      animation: swing 2s infinite ease-in-out;
+    }
+    .coding {
+      color: #2196F3;
+      display: inline-block;
+      animation: pulse 2s infinite ease-in-out;
+    }
+    .tennis {
+      color: #f39c12;
+      display: inline-block;
+      animation: bounce 1.5s infinite ease-in-out;
+    }
+
+    @keyframes swing {
+      0%   { transform: rotate(0deg); }
+      25%  { transform: rotate(5deg); }
+      50%  { transform: rotate(0deg); }
+      75%  { transform: rotate(-5deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    @keyframes pulse {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* زر واتساب */
+    .wa-wrap {
+      margin-top: 20px;
+    }
+    .wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #25D366;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 12px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .wa img {
+      width: 22px;
+      height: 22px;
+    }
+    .wa:hover {
+      background-color: #1ebe5d;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- تسجيل الدخول -->
+  <div class="container" id="login">
+    <h2>🔒 أدخل كلمة السر للدخول</h2>
+    <input type="password" id="passwordInput" placeholder="كلمة السر">
+    <br>
+    <button onclick="checkPassword()">دخول</button>
+  </div>
+
+  <!-- الصفحة الخاصة -->
+  <div class="container" id="privatePage">
+    <h2>⭐ أهلاً بكم في صفحتي ⭐</h2>
+    <div class="flowers">🌹 🌹 🌹 🌹 🌹 🌹 🌹</div>
+    <h3>المعلومات الشخصية</h3>
+    <p>الاسم: مهند إبراهيم</p>
+    <p>🎂 مواليد 9 نوفمبر 2006</p>
+    <p>📌 السن: 19 سنة</p>
+    <p>📚 طالب في جامعة مصر</p>
+    <p>💻 التخصص: IT</p>
+    <p>👨‍👩‍👧‍👦 إخواتي: أحمد، محمد، ندى، جهاد</p>
+
+    <button id="musicBtn" onclick="toggleMusic()">▶️ تشغيل الأغنية</button>
+    <button onclick="showHobbies()">التالي ➡️</button>
+    <button onclick="logout()">تسجيل الخروج</button>
+
+    <!-- واتساب آخر الصفحة -->
+    <div class="wa-wrap">
+      <a class="wa" href="https://wa.me/201004148260" target="_blank" rel="noopener">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="واتساب">
+        تواصل على واتساب
+      </a>
+    </div>
+
+    <div id="player"></div>
+  </div>
+
+  <!-- صفحة الهوايات -->
+  <div class="container" id="hobbiesPage">
+    <h2>🎯 هواياتي</h2>
+    <ul style="list-style: none; padding: 0; font-size: 18px; line-height: 2;">
+      <li class="football">⚽ كوره</li>
+      <li class="coding">💻 برمجه</li>
+      <li class="tennis">🏓 تنس طاولة</li>
+    </ul>
+    <button onclick="backToPrivate()">⬅️ رجوع</button>
+  </div>
+
+  <!-- سكريبت -->
+  <script>
+    const correctPassword = "1"; 
+    let player;
+    let isPlaying = false;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '0',
+        width: '0',
+        videoId: 'N4bpHqZ8cjw',
+        playerVars: { autoplay: 0, loop: 1, playlist: 'N4bpHqZ8cjw' }
+      });
+    }
+
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value;
+      if (input === correctPassword) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("privatePage").style.display = "block";
+      } else {
+        alert("❌ كلمة السر غير صحيحة!");
+      }
+    }
+
+    function toggleMusic() {
+      if (!player) return;
+      if (isPlaying) {
+        player.pauseVideo();
+        document.getElementById("musicBtn").innerText = "▶️ تشغيل الأغنية";
+      } else {
+        player.playVideo();
+        document.getElementById("musicBtn").innerText = "⏸️ إيقاف الأغنية";
+      }
+      isPlaying = !isPlaying;
+    }
+
+    function logout() {
+      document.getElementById("privatePage").style.display = "none";
+      document.getElementById("hobbiesPage").style.display = "none";
+      document.getElementById("login").style.display = "block";
+      document.getElementById("passwordInput").value = "";
+      document.getElementById("musicBtn").innerText = "▶️ تشغيل الأغنية";
+      if (player) player.stopVideo();
+      isPlaying = false;
+    }
+
+    function showHobbies() {
+      document.getElementById("privatePage").style.display = "none";
+      document.getElementById("hobbiesPage").style.display = "block";
+    }
+
+    function backToPrivate() {
+      document.getElementById("hobbiesPage").style.display = "none";
+      document.getElementById("privatePage").style.display = "block";
+    }
+
+    window.onload = function () {
+      document.getElementById("login").style.display = "block";
+    };
+  </script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+</body>
+</html>
